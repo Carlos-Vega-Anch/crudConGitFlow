@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import CrudTable from "./CrudTable";
+import CrudForm from "./CrudForm";
 
 const initialDb = [
   { id: 1, name: "name1", constellation: "constellation1" },
@@ -12,6 +13,7 @@ function App() {
 
   return (
     <>
+    <CrudForm/>
       <CrudTable data={initialDb} />
     </>
   );
