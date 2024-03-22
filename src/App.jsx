@@ -9,12 +9,22 @@ const initialDb = [
 ];
 
 function App() {
-  const [dB, setDB] = useState(initialDb);
+  const [db, setDb] = useState(initialDb);
+  const [dataToEdit, setDataToEdit] = useState(null)
+  const createData =(data)=>{
+    data.id= Date.now();
+   
+    setDb([...db,data])
+  }
+  const updateData =(data)=>{
+
+
+  }
 
   return (
     <>
-    <CrudForm/>
-      <CrudTable data={initialDb} />
+    <CrudForm createData={createData} updateData={updateData} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>
+    <CrudTable db={db} updateData={updateData}  dataToEdit={dataToEdit}  setDataToEdit={setDataToEdit}/>
     </>
   );
 }

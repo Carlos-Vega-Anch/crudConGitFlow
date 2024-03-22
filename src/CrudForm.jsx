@@ -1,4 +1,4 @@
-import React, { useState } from 'react' 
+import React, { useEffect, useState } from 'react'
 
 const initialForm = {
     id:null,
@@ -7,19 +7,42 @@ const initialForm = {
 }
 
 
-const CrudForm = () => {
+const CrudForm = ({createData,updateData,dataToEdit,setDataToEdit}) => {
     const [form, setForm] = useState(initialForm);
+    console.log(form)
 
+    useEffect(() => {
+     if(dataToEdit){
+      setForm(dataToEdit)
+     }else{
+      setForm(initialForm)
+     }
+    }, [dataToEdit])
+    
     const handleChange = (e)=>{
-       
+
+       setForm({
+        ...form,
+        [e.target.name]:e.target.value
+       })
     }
 
     const handleSubmit = (e)=>{
+          e.preventDefault()
+          if(!form.name || !form.constellation){
+            alert('datos incompletos')
+            return
+          }
+          if(form.id === null){
+            createData(form)
+          }else{updateData(form)}
 
+          handleReset()
     }
 
     const handleReset = (e)=>{
         setForm(initialForm)
+        setDataToEdit(null)
     }
 
   return (
