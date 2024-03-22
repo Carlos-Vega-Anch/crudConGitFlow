@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import CrudTableRow from './CrudTableRow'
 
-const CrudTable = ({data}) => {
+const CrudTable = ({db,updateData,dataToEdit,setDataToEdit}) => {
         //const {id,name,constellation}=data
 
 
@@ -20,7 +20,7 @@ const CrudTable = ({data}) => {
 
         <tbody>
             {
-                data.length === 0 ? <tr><td colSpan='3'>Sin datos</td></tr>:data.map(el =><CrudTableRow key ={el.id} el={el}/>)
+                db.length === 0 ? <tr><td colSpan='3'>Sin datos</td></tr>:db.map(el =><CrudTableRow key ={el.id} el={el} updateData={updateData} dataToEdit={dataToEdit} setDataToEdit={setDataToEdit}/>)
                    
                 
             }
